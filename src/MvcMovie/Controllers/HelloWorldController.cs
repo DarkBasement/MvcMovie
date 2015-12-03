@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Extensions.WebEncoders;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,14 +12,14 @@ namespace MvcMovie.Controllers
     public class HelloWorldController : Controller
     {
         // GET: /HelloWorld/
-        public string Index()
+        public IActionResult Index()
         {
-            return "This is my default action...";
+            return View();
         }
 
-        public string Wellcome()
+        public string Wellcome(string name, int ID = 1)
         {
-            return "This is the wellcome action";
+            return HtmlEncoder.Default.HtmlEncode("Hello " + name + ", ID: " + ID);
         }
     }
 }
